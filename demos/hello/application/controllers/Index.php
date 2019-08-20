@@ -1,5 +1,20 @@
 <?php
-class IndexController extends \Yaf\Controller_Abstract {
+
+use Yaf\Application;
+use Yaf\Controller_Abstract;
+
+class IndexController extends Controller_Abstract
+{
+    public function init()
+    {
+        //echo $this->getRequest()->controller.'<br/>';
+        //echo $this->getRequest()->action.'<br/>';
+        if ($this->getRequest()->action != 'index') {
+            exit('禁止访问');
+        }
+
+    }
+
 
    public function indexAction() {
 
@@ -7,7 +22,7 @@ class IndexController extends \Yaf\Controller_Abstract {
         //$adapter = new \adapter\BaseAdapter('testAdapter');
         //$this->getView()->content = $adapter->name;
 
-       $config = \Yaf\Application::app()->getConfig()->toArray();
+       $config = Application::app()->getConfig()->toArray();
 
        echo json_encode($config);
    }

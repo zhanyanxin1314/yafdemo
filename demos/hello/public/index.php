@@ -1,7 +1,7 @@
 <?php
-define("APPLICATION_PATH",  dirname(dirname(__FILE__)));
 
-$app  = new \Yaf\Application(APPLICATION_PATH . "/conf/application.ini");
-//$app->bootstrap()->run();
-$app->run();
-?>
+use Yaf\Application;
+
+define("APPLICATION_PATH",  dirname(dirname(__FILE__)));
+$app = new Application(APPLICATION_PATH . "/conf/application.ini");
+$app->bootstrap()->run();
