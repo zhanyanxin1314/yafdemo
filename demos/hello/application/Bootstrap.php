@@ -3,6 +3,7 @@
 use Yaf\Application;
 use Yaf\Bootstrap_Abstract;
 use Yaf\Dispatcher;
+use Yaf\Registry;
 
 class Bootstrap extends Bootstrap_Abstract
 {
@@ -21,7 +22,11 @@ class Bootstrap extends Bootstrap_Abstract
      */
     public function _initComponents()
     {
-        // echo __FUNCTION__.'<br/>';
+        $config = Application::app()->getConfig();
+
+        Registry::set('config', $config);
+        //\extend\Di::set('dbUser',$config->toArray()['db']);
+
     }
 
     /**
