@@ -9,6 +9,7 @@ use Yaf\Dispatcher;
  */
 class ErrorController extends Controller_Abstract
 {
+
     public function init()
     {
         Dispatcher::getInstance()->disableView();

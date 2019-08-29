@@ -78,16 +78,13 @@ class UserController extends Controller_Abstract
             'userName' => time(),
             'content'  => uniqid('content')
         ]);
-
          echo $result;
         */
-
         /*$this->_view->display('index/info.phtml',[
             'userName' => time(),
             'content'  => uniqid('content')
         ]);*/
-        echo "dd1111";
-        die;
+        echo "for";
         die;
     }
 }

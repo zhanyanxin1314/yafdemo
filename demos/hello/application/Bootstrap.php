@@ -1,5 +1,6 @@
 <?php
 
+use extend\Di;
 use Yaf\Application;
 use Yaf\Bootstrap_Abstract;
 use Yaf\Dispatcher;
@@ -25,7 +26,7 @@ class Bootstrap extends Bootstrap_Abstract
         $config = Application::app()->getConfig();
 
         Registry::set('config', $config);
-        //\extend\Di::set('dbUser',$config->toArray()['db']);
+        Di::set('dbUser', $config->toArray()['db']);
 
     }
 
@@ -77,5 +78,19 @@ class Bootstrap extends Bootstrap_Abstract
         $router->addRoute('rewrite',$route);*/
 
         $router->addConfig(Application::app()->getConfig()->routes);
+    }
+
+    /**初始化日志组件
+     * @param Dispatcher $dispatcher
+     * @author zhang yanxin
+     */
+    public function _initLog(Dispatcher $dispatcher)
+    {
+        $logConfig = Application::app()->getConfig()->toArray()['log'];
+        $logConfig['fileName'] = $logConfig['logPath'] . '/' . date('Y-m') . '/' . date('d') . '/yaf.log';
+        unset($logConfig['logPath']);
+        Di::set('log', $logConfig);
+
+        Di::get('log')->debug('log set done!');
     }
 }
